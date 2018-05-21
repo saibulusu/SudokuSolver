@@ -7,9 +7,11 @@ import javax.swing.JButton;
 public class Puzzle {
 
 	public int[][] board;
+	public int[][] copy;
 	
 	public Puzzle(int[][] board) {
 		this.board = board;
+		copy = new int[9][9];
 	}
 	
 	public String toString() {
@@ -17,6 +19,7 @@ public class Puzzle {
 		for (int r = 0; r < 9; r++) {
 			for (int c = 0; c < 9; c++) {
 				res += board[r][c] + " ";
+				copy[r][c] = board[r][c];
 			}
 			res += "\n";
 		}
@@ -75,6 +78,8 @@ public class Puzzle {
 		return possible;
 	}
 	
+	public int[][] altered = new int[9][9];
+	
 	// solve the board recursively
 	public void solve(JButton[][] buttons) {
 		if (solved()) {
@@ -84,15 +89,17 @@ public class Puzzle {
 			return;
 		} else {
 			// recursive step: analyze each position with 0 and check every possible value
-			int R = -1;
-			int C = -1;
+			int R = 0;
+			int C = 0;
 			
 			// find the first position with 0 at its value
+			loop_A:
 			for (int r = 0; r < 9; r++) {
 				for (int c = 0; c < 9; c++) {
-					if (board[r][c] == 0 && R == -1) {
+					if (board[r][c] == 0) {
 						R = r;
 						C = c;
+						break loop_A;
 					}
 				}
 			}
@@ -104,14 +111,16 @@ public class Puzzle {
 			for (int i = 1; i < 10; i++) {
 				if (possible[i]) {
 					board[R][C] = i;
-					buttons[R][C].setText(i + "");
-					buttons[R][C].setForeground(Color.BLACK);
+//					altered[R][C] = i;
+//					buttons[R][C].setText(i + "");
+//					buttons[R][C].setForeground(Color.BLACK);
 					solve(buttons);
 				}
 			}
 			
 			// if all else fails, then set the value to 0, so the program will backtrack and remove a value
 			board[R][C] = 0;
+//			System.out.println(R + " " + C);
 		}
 	}
 }

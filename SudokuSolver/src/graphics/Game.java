@@ -61,6 +61,19 @@ public class Game {
 							public void actionPerformed(ActionEvent e) {
 								// TODO Auto-generated method stub
 								puzzle.solve(buttons);
+								
+								int[][] copy = puzzle.copy;
+								System.out.println("COPY");
+								for (int r = 0; r < 9; r++) {
+									for (int c = 0; c < 9; c++) {
+										System.out.print(copy[r][c] + " ");
+										buttons[r][c].setText(copy[r][c] + " ");
+										if (!buttons[r][c].getForeground().equals(Color.BLUE)) {
+											buttons[r][c].setForeground(Color.BLACK);
+										}
+									}
+									System.out.println();
+								}
 							}
 						});
 					}
@@ -86,11 +99,8 @@ public class Game {
 				}
 
 				frame.pack();
-
 			}
 		}
-		
-//		puzzle.solve(buttons);
 	}
 	
 }
