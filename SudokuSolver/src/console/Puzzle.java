@@ -2,7 +2,7 @@ package console;
 
 public class Puzzle {
 
-	int[][] board;
+	public int[][] board;
 	
 	public Puzzle(int[][] board) {
 		this.board = board;
@@ -72,7 +72,7 @@ public class Puzzle {
 	}
 	
 	// solve the board recursively
-	void solve() {
+	public void solve() {
 		if (solved()) {
 			// base case: the board is already solved
 			System.out.println("SOLVED");
