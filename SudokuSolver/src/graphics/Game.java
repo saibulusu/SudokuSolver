@@ -24,15 +24,13 @@ public class Game {
 
 	static boolean errorChecking = false;
 
-	static int clickedR;
-	static int clickedC;
-
 	static Puzzle attempt;
 	
 	static Puzzle solution;
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		Scanner scan = new Scanner(new File("/Users/saibulusu/git/SudokuSolver/SudokuSolver/res/test1.txt"));
+//		Scanner scan = new Scanner(new File("C:\\Users\\s-bulusus\\git\\SudokuSolver\\SudokuSolver\\res\\test1.txt"));
+		Scanner scan = new Scanner(new File("res/test1.txt"));
 		int[][] board = new int[9][9];
 
 		for (int r = 0; r < 9; r++) {
@@ -47,6 +45,7 @@ public class Game {
 		System.out.println(puzzle);
 		
 		puzzle.solve();
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		
 		solution = new Puzzle(board);
 		solution.board = puzzle.copy;
@@ -148,6 +147,7 @@ public class Game {
 											System.out.println("solution at [0][1]: " + solution.board[0][1]);
 											
 											System.out.println("solution: \n" + solution);
+											System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 											
 											loop_B:
 											for (int r = 0; r < 9; r++) {
