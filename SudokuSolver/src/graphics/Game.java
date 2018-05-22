@@ -52,6 +52,12 @@ public class Game {
 		solution.board = puzzle.copy;
 
 		attempt = new Puzzle(board);
+
+		int choice = JOptionPane.showConfirmDialog(null, "Enable Error Checking?");
+
+		if (choice == JOptionPane.YES_OPTION) {
+			errorChecking = true;
+		}
 		
 		JFrame frame = new JFrame();
 		frame.setVisible(true);
@@ -63,17 +69,11 @@ public class Game {
 
 		frame.setLayout(new GridLayout(10, 9));
 
-		int choice = JOptionPane.showConfirmDialog(null, "Enable Error Checking?");
-
-		if (choice == JOptionPane.YES_OPTION) {
-			errorChecking = true;
-		}
-
 		for (r = 0; r < 10; r++) {
 			if (r == 9) {
 				for (c = 0; c < 9; c++) {
 					JButton button = new JButton();
-					button.setFont(new Font("Arial", Font.PLAIN, 20));
+					button.setFont(new Font("Arial", Font.PLAIN, 15));
 
 					frame.add(button);
 					
@@ -175,6 +175,7 @@ public class Game {
 												JOptionPane.showMessageDialog(null, "Congratulations!");
 												options.dispose();
 												frame.dispose();
+												System.exit(0);
 											}
 										}
 									});
