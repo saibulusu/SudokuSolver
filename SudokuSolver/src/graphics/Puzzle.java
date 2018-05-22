@@ -78,10 +78,8 @@ public class Puzzle {
 		return possible;
 	}
 	
-	public int[][] altered = new int[9][9];
-	
 	// solve the board recursively
-	public void solve(JButton[][] buttons) {
+	public void solve() {
 		if (solved()) {
 			// base case: the board is already solved
 			System.out.println("SOLVED");
@@ -111,16 +109,12 @@ public class Puzzle {
 			for (int i = 1; i < 10; i++) {
 				if (possible[i]) {
 					board[R][C] = i;
-//					altered[R][C] = i;
-//					buttons[R][C].setText(i + "");
-//					buttons[R][C].setForeground(Color.BLACK);
-					solve(buttons);
+					solve();
 				}
 			}
 			
 			// if all else fails, then set the value to 0, so the program will backtrack and remove a value
 			board[R][C] = 0;
-//			System.out.println(R + " " + C);
 		}
 	}
 }
