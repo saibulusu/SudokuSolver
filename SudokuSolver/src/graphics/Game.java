@@ -32,7 +32,7 @@ public class Game {
 	static Puzzle solution;
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		Scanner scan = new Scanner(new File("/Users/saibulusu/git/SudokuSolver/SudokuSolver/res/test2.txt"));
+		Scanner scan = new Scanner(new File("/Users/saibulusu/git/SudokuSolver/SudokuSolver/res/test1.txt"));
 		int[][] board = new int[9][9];
 
 		for (int r = 0; r < 9; r++) {
@@ -152,6 +152,7 @@ public class Game {
 											loop_B:
 											for (int r = 0; r < 9; r++) {
 												for (int c = 0; c < 9; c++) {
+													System.out.println(r + " " + c);
 													if (buttons[r][c].getText().equals("")) {
 														attempt.board[r][c] = 0;
 													} else {
@@ -159,8 +160,8 @@ public class Game {
 														System.out.println("attempt at [0][1] is " + attempt.board[0][1]);
 													}
 													
-													System.out.print(attempt.board[r][c] + " ");
-													if (errorChecking && attempt.board[r][c] != solution.board[r][c]) {
+													System.out.println("attempt at " + r + " " + c + " " + attempt.board[r][c] + " ");
+													if (errorChecking && attempt.board[r][c] != solution.board[r][c] && attempt.board[r][c] != 0) {
 														button.setText("");
 														attempt.board[r][c] = 0;
 														JOptionPane.showMessageDialog(null, "That is incorrect");
@@ -168,6 +169,12 @@ public class Game {
 													}
 												}
 												System.out.println();
+											}
+											
+											if (attempt.solved()) {
+												JOptionPane.showMessageDialog(null, "Congratulations!");
+												options.dispose();
+												frame.dispose();
 											}
 										}
 									});
